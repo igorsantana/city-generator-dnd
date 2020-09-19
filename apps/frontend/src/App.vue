@@ -1,29 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <b-navbar :centered="true" :shadow="true">
+      <template slot="start">
+        <b-navbar-item href="#">
+          City Generator
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+    <div id="content">
+      <city-generator> </city-generator>
+      <markdown-preview></markdown-preview>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
+import CityGenerator from './components/CityGenerator';
+import MarkdownPreview from './components/MarkdownPreview';
+import store from './store/index';
 
-export default Vue.extend({
+Vue.use(Buefy);
+
+export default {
   name: 'App',
+  store,
   components: {
-    HelloWorld,
+    CityGenerator,
+    MarkdownPreview,
   },
-});
+  created() {
+    const { dispatch } = this.$store;
+    dispatch('sendHash');
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+div#content {
+  display: flex;
+  justify-content: space-around;
+  overflow: auto;
+  height: 100vh;
+  margin-top: 0.5%;
+}
+nav.panel {
+  width: 45%;
+}
+
+nav.panel > .panel-heading {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
