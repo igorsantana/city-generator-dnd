@@ -14,6 +14,7 @@
         aria-controls="contentCity"
       >
         <strong>City Size</strong>
+        <i class="fa fa-check is-success" style="float: right" aria-hidden="true" v-show="done && !isOpen"></i>
       </div>
       <div class="panel-inside-container">
         <p>
@@ -57,7 +58,7 @@
           </b-field>
           <b-button
             type="is-success"
-            style="width: 30%; margin: 0;"
+            style="width: 30%; margin: 0 auto;"
             @click="submitCity"
             >Ok!
           </b-button>

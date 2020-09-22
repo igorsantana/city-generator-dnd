@@ -18,7 +18,7 @@ const store = new Vuex.Store({
         console.log(e);
       }
     },
-    async city({ commit, dispatch }, data) {
+    async city({ commit, dispatch }: any, data: any) {
       try {
         await post('/city', data);
       } catch (e) {
