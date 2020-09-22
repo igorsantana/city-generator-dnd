@@ -1,7 +1,7 @@
 <template>
   <section class="panel-content-inside">
     <b-collapse
-      aria-id="contentIdForA11y2"
+      aria-id="contentCity"
       class="panel"
       animation="slide"
       v-model="isOpen"
@@ -11,7 +11,7 @@
         slot="trigger"
         class="panel-heading"
         role="button"
-        aria-controls="contentIdForA11y2"
+        aria-controls="contentCity"
       >
         <strong>City Size</strong>
       </div>
@@ -55,7 +55,12 @@
               }}</b-slider-tick>
             </b-slider>
           </b-field>
-        <b-button type="is-success" style="width: 30%; margin: 0 auto;">Ok!</b-button>
+          <b-button
+            type="is-success"
+            style="width: 30%; margin: 0;"
+            @click="submitCity"
+            >Ok!
+          </b-button>
         </div>
       </div>
     </b-collapse>
@@ -71,7 +76,7 @@ export default {
       minCity: 0,
       citySizeNumbers: [],
       maxCity: 999,
-      done: true,
+      done: false,
       isOpen: true,
     };
   },
@@ -96,6 +101,13 @@ export default {
     },
     locale(number) {
       return number.toLocaleString();
+    },
+    submitCity() {
+      const { citySize, citySizeNumbers } = this;
+      const [min, max] = citySizeNumbers;
+      this.$emit('submit', { type: citySize, min, max });
+      this.done = true;
+      this.isOpen = false;
     },
   },
 };

@@ -4,19 +4,27 @@
       City Generator
     </p>
     <div class="panel-block">
-      <city-type></city-type>
+      <city-type v-on:submit="submitCitySize"></city-type>
     </div>
   </nav>
 </template>
 
 <script>
-import CityType from "./city-components/CityType.vue";
+import CityType from './city-components/CityType.vue';
+import store from '../store/index';
 
 const CityGenerator = {
-  name: "CityGenerator",
+  name: 'CityGenerator',
   components: {
-    CityType
-  }
+    CityType,
+  },
+  store,
+  methods: {
+    submitCitySize(data) {
+      const { dispatch } = this.$store;
+      dispatch('city', data);
+    },
+  },
 };
 
 export default CityGenerator;

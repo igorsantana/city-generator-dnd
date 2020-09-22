@@ -2,16 +2,25 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import getHash from '../aux/getHash';
 import axios from 'axios';
+import { checkServerIdentity } from 'tls';
 
 Vue.use(Vuex);
+
+const { post } = axios;
 
 const store = new Vuex.Store({
   actions: {
     async sendHash() {
       const hash = getHash();
-      const { post } = axios;
       try {
         await post('/hash', { hash });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async city({ commit, dispatch }, data) {
+      try {
+        await post('/city', data);
       } catch (e) {
         console.log(e);
       }
