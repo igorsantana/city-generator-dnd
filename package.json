@@ -2,6 +2,7 @@
   "name": "city-creator",
   "version": "0.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
@@ -24,15 +25,17 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js"
+    "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js",
+    "server-back": "nodemon apps/backend/server.js"
   },
   "private": true,
   "dependencies": {
     "axios": "^0.20.0",
     "buefy": "^0.9.3",
-    "express": "4.17.1",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "nx": "^10.2.1",
+    "package.json": "^2.0.1",
     "vue": "^2.6.11",
     "vuex": "^3.4.0"
   },
@@ -63,6 +66,8 @@
     "jest": "26.2.2",
     "jest-serializer-vue": "^2.0.2",
     "jest-transform-stub": "^2.0.0",
+    "mongoose": "^5.10.6",
+    "nodemon": "^2.0.4",
     "prettier": "2.0.4",
     "ts-jest": "26.1.4",
     "ts-node": "~7.0.0",
