@@ -66,7 +66,6 @@ div.select-holders {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 div.smaller-font {

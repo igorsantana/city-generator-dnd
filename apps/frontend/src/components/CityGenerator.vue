@@ -6,6 +6,7 @@
     <div class="panel-block">
       <city-type v-on:submit="submitCitySize"></city-type>
       <race-adjustment></race-adjustment>
+      <shop-selector></shop-selector>
     </div>
   </nav>
 </template>
@@ -13,6 +14,7 @@
 <script>
 import CityType from './city-components/CityType.vue';
 import RaceAdjustment from './city-components/RaceAdjustment.vue';
+import ShopSelector from './city-components/ShopSelector.vue';
 import store from '../store/index';
 
 const CityGenerator = {
@@ -20,6 +22,7 @@ const CityGenerator = {
   components: {
     CityType,
     RaceAdjustment,
+    ShopSelector,
   },
   store,
   methods: {
@@ -40,7 +43,7 @@ export default CityGenerator;
   width: 45%;
   overflow: auto;
 } */
-div.panel-block{
+div.panel-block {
   display: flex;
   flex-direction: column;
 }
