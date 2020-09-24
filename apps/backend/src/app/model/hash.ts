@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import * as mongoose from "mongoose"
 
 let Hash = {
   hash: {
@@ -6,7 +6,7 @@ let Hash = {
     required: true,
     index:true
   },
-  json: {
+  entity: {
     type: mongoose.Schema.Types.Mixed,
     required: true
   }

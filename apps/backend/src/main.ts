@@ -1,8 +1,9 @@
-import express from "express";
-import mongoose from "mongoose";
-import HashApi from "./route/HashApi.js"
+import * as express from "express";
+import * as mongoose from "mongoose";
+import HashApi from "./app/route/HashApi";
+import GeneratorApi from "./app/route/GeneratorApi";
 
-const db = mongoose.connection
+const db = mongoose.connection;
 db
   .on("error",()=>console.log("Connected to the database could not be completed"))
   .on("open",()=>console.log("Connected to the database"));
@@ -12,7 +13,10 @@ var app = express();
 app.use(express.json());
 
 app.use("/",HashApi);
+app.use("/",GeneratorApi);
 
 app.listen(3000, function() {
     console.log('App de Exemplo escutando na porta 3000!');
 });
+
+export default {};

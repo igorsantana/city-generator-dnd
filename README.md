@@ -98,3 +98,22 @@ Escola de Classe (porcentagem baixa):
 - Magic (Com todas as escolar)
 
 http://hkcarms.tripod.com/oc3.html
+
+
+  let person = {
+    gender:"MALE",
+    race:{
+      source: 'vgtm',
+      display: 'Kobold',
+      value: 'almostnonexistent'
+    },
+    age:12,
+    ocupation:[{
+      location:{},
+      role:"BARIST"
+    }],
+    align:"CN",
+    relationships:[]
+  }
+  return [{}];
+}
