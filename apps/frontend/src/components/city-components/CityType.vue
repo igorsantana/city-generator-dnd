@@ -4,16 +4,16 @@
       Ok, you want to build a city... What size do you want this city to be?
     </p>
     <div class="radio-block">
-      <b-radio v-model="citySize" name="name" native-value="settlement">
+      <b-radio v-model="cs" name="name" native-value="settlement">
         Settlement
       </b-radio>
-      <b-radio v-model="citySize" name="name" native-value="village">
+      <b-radio v-model="cs" name="name" native-value="village">
         Village
       </b-radio>
-      <b-radio v-model="citySize" name="name" native-value="city">
+      <b-radio v-model="cs" name="name" native-value="city">
         City
       </b-radio>
-      <b-radio v-model="citySize" name="name" native-value="metropolis">
+      <b-radio v-model="cs" name="name" native-value="metropolis">
         Metropolis
       </b-radio>
     </div>
@@ -27,10 +27,12 @@
       <b-field>
         <b-slider
           class="slider-city"
-          v-model="citySizeNumbers"
+          v-model="numbers"
           :min="slider[0]"
           :max="slider[1]"
-          :step="ticks"
+          :step="slider[2]"
+          @change="updateCityNumbers"
+          lazy
         >
           <b-slider-tick :value="slider[0]">{{
             locale(slider[0])
@@ -45,32 +47,35 @@
 </template>
 
 <script>
+import store from '../../store/index';
+import { mapState } from 'vuex';
+
 export default {
   name: 'CityType',
+  store,
   data() {
     return {
-      citySize: 'settlement',
-      minCity: 0,
-      citySizeNumbers: [],
-      maxCity: 999,
-      done: false,
-      isOpen: true,
+      cs: 'settlement',
+      numbers: [],
     };
   },
   computed: {
+    ...mapState(['citySize', 'citySizeNumbers']),
     slider() {
-      const slider = this.getMinMax().slice(0, 2);
-      return slider;
-    },
-    ticks() {
-      const [, , tick] = this.getMinMax();
-      return tick;
+      return this.getMinMax();
     },
   },
   watch: {
-    citySize(value) {
-      this.citySizeNumbers = this.getMinMax();
+    cs(value) {
+      const [min, max] = this.getMinMax();
+      this.$store.commit('updateCitySize', value);
+      this.$store.commit('updateCityNumbers', [min, max]);
+      this.numbers = [min, max];
     },
+  },
+  created(){
+    const [min, max] = this.getMinMax();
+    this.$store.commit('updateCityNumbers', [min, max]);
   },
   methods: {
     format(str) {
@@ -79,25 +84,21 @@ export default {
     locale(number) {
       return number.toLocaleString();
     },
-    getMinMax(cityType) {
-      const { citySize } = this;
-      if (citySize === 'village') {
+    getMinMax() {
+      const { cs } = this;
+      if (cs === 'village') {
         return [101, 1000, 50];
       }
-      if (citySize === 'city') {
+      if (cs === 'city') {
         return [1001, 50000, 1000];
       }
-      if (citySize === 'metropolis') {
+      if (cs === 'metropolis') {
         return [50001, 250000, 10000];
       }
       return [10, 100, 5];
     },
-    submitCity() {
-      const { citySize, citySizeNumbers } = this;
-      const [min, max] = citySizeNumbers;
-      this.$emit('submit', { type: citySize, min, max });
-      this.done = true;
-      this.isOpen = false;
+    updateCityNumbers(value) {
+      this.$store.commit('updateCityNumbers', value);
     },
   },
 };

@@ -25,7 +25,7 @@
       >
         <b-select v-model="race.value" required class="smaller-font">
           <option
-            v-for="option in options"
+            v-for="option in raceOptions"
             :value="option.value"
             :key="option.name"
           >
@@ -38,7 +38,8 @@
 </template>
 
 <script>
-import { getRaces, getOptions } from '../../aux/raceAdjustment';
+import store from '../../store/index';
+import { mapState } from 'vuex';
 
 export default {
   name: 'RaceAdjustment',
@@ -47,14 +48,22 @@ export default {
       books: ['phb'],
     };
   },
+  store,
   computed: {
-    races: () => getRaces(),
-    options: () => getOptions(),
+    ...mapState(['races', 'raceOptions']),
   },
   methods: {
     showRaceSelector(race) {
       const hasInBooks = this.books.filter((book) => book === race.source);
       return hasInBooks.length > 0;
+    },
+    changedRaceValue(race) {
+      console.log(race);
+    },
+  },
+  watch: {
+    races() {
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaaa');
     },
   },
 };

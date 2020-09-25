@@ -1,116 +1,95 @@
 function getShops() {
-  return [
-    {
+  return {
+    pawnshop: {
       name: 'Pawnshop',
-      value: 'pawnshop',
       generate: true,
     },
-    {
+    smithy: {
       name: 'Smithy',
-      value: 'smithy',
       generate: true,
     },
-    {
+    herbsincense: {
       name: 'Herbs/incense',
-      value: 'herbsincense',
       generate: true,
     },
-    {
+    carpenter: {
       name: 'Carpenter',
-      value: 'carpenter',
       generate: true,
     },
-    {
+    fruitsvegetables: {
       name: 'Fruits/vegetables',
-      value: 'fruitsvegetables',
       generate: true,
     },
-    {
+    weaver: {
       name: 'Weaver',
-      value: 'weaver',
       generate: true,
     },
-    {
+    driedmeats: {
       name: 'Dried Meats',
-      value: 'driedmeats',
       generate: true,
     },
-    {
+    jeweler: {
       name: 'Jeweler',
-      value: 'jeweler',
       generate: true,
     },
-    {
+    pottery: {
       name: 'Pottery',
-      value: 'pottery',
       generate: true,
     },
-    {
+    baker: {
       name: 'Baker',
-      value: 'baker',
       generate: true,
     },
-    {
+    undertaker: {
       name: 'Undertaker',
-      value: 'undertaker',
       generate: true,
     },
-    {
+    mapmaker: {
       name: 'Mapmaker',
-      value: 'mapmaker',
       generate: true,
     },
-    {
+    bookstore: {
       name: 'Bookstore',
-      value: 'bookstore',
       generate: true,
     },
-    {
+    tailor: {
       name: 'Tailor',
-      value: 'tailor',
       generate: true,
     },
-    {
+    moneylender: {
       name: 'Moneylender',
-      value: 'moneylender',
       generate: true,
     },
-    {
+    ropemaker: {
       name: 'Ropemaker',
-      value: 'ropemaker',
       generate: true,
     },
-    {
+    weaponsarmor: {
       name: 'Weapons/armor',
-      value: 'weaponsarmor',
+      value: '',
       generate: true,
     },
-    {
+    mason: {
       name: 'Mason',
-      value: 'mason',
       generate: true,
     },
-    {
+    chandler: {
       name: 'Chandler',
-      value: 'chandler',
       generate: true,
     },
-    {
+    scribe: {
       name: 'Scribe',
-      value: 'scribe',
       generate: true,
     },
-    {
+    tavern: {
       name: 'Tavern',
-      value: 'tavern',
       generate: true,
     },
-    {
+    magicshop: {
       name: 'Magic Shop',
-      value: 'magicshop',
       generate: true,
     },
-  ];
+  };
 }
 
 export { getShops };

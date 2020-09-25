@@ -4,17 +4,20 @@
       City Generator
     </p>
     <div class="panel-block">
-      <city-type v-on:submit="submitCitySize"></city-type>
+      <city-type></city-type>
       <race-adjustment></race-adjustment>
       <shop-selector></shop-selector>
+      <guild-selector></guild-selector>
+      <temple-selector></temple-selector>
     </div>
   </nav>
 </template>
-
 <script>
 import CityType from './city-components/CityType.vue';
 import RaceAdjustment from './city-components/RaceAdjustment.vue';
 import ShopSelector from './city-components/ShopSelector.vue';
+import GuildSelector from './city-components/GuildSelector.vue';
+import TempleSelector from './city-components/TempleSelector.vue';
 import store from '../store/index';
 
 const CityGenerator = {
@@ -23,6 +26,8 @@ const CityGenerator = {
     CityType,
     RaceAdjustment,
     ShopSelector,
+    GuildSelector,
+    TempleSelector,
   },
   store,
   methods: {
@@ -37,12 +42,6 @@ export default CityGenerator;
 </script>
 
 <style>
-/* section#city-generator-card {
-  margin-top: 5vh;
-  background-color: #cfcfcd;
-  width: 45%;
-  overflow: auto;
-} */
 div.panel-block {
   display: flex;
   flex-direction: column;
