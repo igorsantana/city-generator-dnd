@@ -19,13 +19,18 @@
     <div class="select-holders">
       <b-field
         :label="race.display"
-        v-for="(race, key) in races"
+        v-for="(race, key) in racesModel"
         :key="key"
         v-show="showRaceSelector(race)"
       >
-        <b-select v-model="race.value" required class="smaller-font">
+        <b-select
+          v-model="race.value"
+          required
+          class="smaller-font"
+          @input="updateData(key, race.value)"
+        >
           <option
-            v-for="option in options"
+            v-for="option in raceOptions"
             :value="option.value"
             :key="option.name"
           >
@@ -38,23 +43,37 @@
 </template>
 
 <script>
-import { getRaces, getOptions } from '../../aux/raceAdjustment';
+import store from '../../store/index';
+import { mapState } from 'vuex';
+import { getRaces } from '../../aux/raceAdjustment';
 
 export default {
   name: 'RaceAdjustment',
   data() {
     return {
       books: ['phb'],
+      racesModel: getRaces(),
     };
   },
+  store,
   computed: {
-    races: () => getRaces(),
-    options: () => getOptions(),
+    ...mapState(['raceOptions']),
   },
   methods: {
     showRaceSelector(race) {
       const hasInBooks = this.books.filter((book) => book === race.source);
       return hasInBooks.length > 0;
+    },
+    updateData(race, value) {
+      const { $store } = this;
+      $store.commit('updateRace', { race, value });
+      this.racesModel = { ...$store.state.races };
+    },
+  },
+  watch: {
+    books(value) {
+      const { $store } = this;
+      $store.commit('updateBooks', this.books);
     },
   },
 };
@@ -66,7 +85,6 @@ div.select-holders {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 div.smaller-font {

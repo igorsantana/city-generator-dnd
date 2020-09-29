@@ -40,7 +40,6 @@ div#content {
   display: flex;
   justify-content: space-around;
   overflow: auto;
-  height: 100vh;
   margin-top: 0.5%;
 }
 nav.panel {
