@@ -55,6 +55,16 @@ Escolha de Negócios (Lojas):
   - Chandler
   - Scribe
 
+100
+
+30 = kid
+10 = old
+60 = regular
+ 30 = camponeses
+ 10 = taverneiros = 5 tavernas
+ 6 = unusual = 4 shops
+ 14 = usual = 9 shops
+
 [Guildas que controlam](https://www.realmshelps.net/faerun/organizations/guilds/index.shtml):
  - ADVENTURERS GUILDS
  - ARCANE GUILDS
@@ -68,7 +78,6 @@ Escolha de Negócios (Lojas):
  - ALCHEMY GUILDS
 
 Religious Domains:
-
  - Nature
  - Tempest
  - Knowledge
