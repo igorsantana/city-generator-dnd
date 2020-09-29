@@ -20,7 +20,7 @@ function filterRaces(races: any, books: string[]) {
 }
 
 function prepareState(state) {
-  const { books, citySizeNumbers, citySize, raceOptions, ...newState } = state;
+  const { books, citySizeNumbers, citySize, raceOptions, hash, ...newState } = state;
   const races = filterRaces(state.races, books);
   const toSend = {
     ...newState,
@@ -36,6 +36,7 @@ function prepareState(state) {
 
 const store = new Vuex.Store({
   state: {
+    hash: getHash(),
     citySize: 'settlement',
     citySizeNumbers: [],
     races: getRaces(),
@@ -81,7 +82,7 @@ const store = new Vuex.Store({
   },
   actions: {
     async sendHash() {
-      const hash = getHash();
+      const { hash } = this.state;
       try {
         await post('/hash', { hash });
       } catch (e) {
@@ -89,9 +90,11 @@ const store = new Vuex.Store({
       }
     },
     async sendData({ commit, dispatch }: any) {
-      const toSend = prepareState(this.state);
+      const { hash } = this.state;
+      const data = prepareState(this.state);
       try {
-        await post('/data', toSend);
+        console.log(JSON.stringify({ identifier: hash, data }));
+        await post('/generate', { identifier: hash, data });
       } catch (error) {
         console.log(error);
       }
