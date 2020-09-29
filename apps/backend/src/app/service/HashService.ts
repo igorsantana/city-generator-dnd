@@ -1,4 +1,4 @@
-import Hash from "../model/hash.js";
+import Hash from "../model/hash";
 
 function Service(){
 };

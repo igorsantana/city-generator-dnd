@@ -1,4 +1,4 @@
-import Service from "../service/HashService.js";
+import Service from "../service/HashService";
 
 function getHash(req,res){
   Service.getHash(req.params.hash, (err, data) => {

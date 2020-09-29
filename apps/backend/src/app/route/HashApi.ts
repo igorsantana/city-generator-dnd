@@ -1,5 +1,5 @@
-import Controller from "../controller/HashController.js";
-import express from "express";
+import Controller from "../controller/HashController";
+import * as express from "express";
 
 const api = express.Router();
 
