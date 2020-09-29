@@ -9,7 +9,6 @@
     </b-navbar>
     <div id="content">
       <city-generator> </city-generator>
-      <markdown-preview></markdown-preview>
     </div>
   </div>
 </template>
@@ -19,7 +18,6 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
 import CityGenerator from './components/CityGenerator';
-import MarkdownPreview from './components/MarkdownPreview';
 import store from './store/index';
 
 Vue.use(Buefy);
@@ -29,7 +27,6 @@ export default {
   store,
   components: {
     CityGenerator,
-    MarkdownPreview,
   },
   created() {
     const { dispatch } = this.$store;
@@ -43,11 +40,10 @@ div#content {
   display: flex;
   justify-content: space-around;
   overflow: auto;
-  height: 100vh;
   margin-top: 0.5%;
 }
 nav.panel {
-  width: 45%;
+  width: 60%;
 }
 
 nav.panel > .panel-heading {
