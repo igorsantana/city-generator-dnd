@@ -9,6 +9,7 @@
       <shop-selector></shop-selector>
       <guild-selector></guild-selector>
       <temple-selector></temple-selector>
+      <b-button type="is-primary" expanded @click="submit">Submit</b-button>
     </div>
   </nav>
 </template>
@@ -22,6 +23,7 @@ import store from '../store/index';
 
 const CityGenerator = {
   name: 'CityGenerator',
+  store,
   components: {
     CityType,
     RaceAdjustment,
@@ -34,6 +36,9 @@ const CityGenerator = {
     submitCitySize(data) {
       const { dispatch } = this.$store;
       dispatch('city', data);
+    },
+    submit() {
+      this.$store.dispatch('sendData');
     },
   },
 };

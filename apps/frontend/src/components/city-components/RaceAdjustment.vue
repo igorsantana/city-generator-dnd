@@ -19,11 +19,16 @@
     <div class="select-holders">
       <b-field
         :label="race.display"
-        v-for="(race, key) in races"
+        v-for="(race, key) in racesModel"
         :key="key"
         v-show="showRaceSelector(race)"
       >
-        <b-select v-model="race.value" required class="smaller-font">
+        <b-select
+          v-model="race.value"
+          required
+          class="smaller-font"
+          @input="updateData(key, race.value)"
+        >
           <option
             v-for="option in raceOptions"
             :value="option.value"
@@ -40,30 +45,35 @@
 <script>
 import store from '../../store/index';
 import { mapState } from 'vuex';
+import { getRaces } from '../../aux/raceAdjustment';
 
 export default {
   name: 'RaceAdjustment',
   data() {
     return {
       books: ['phb'],
+      racesModel: getRaces(),
     };
   },
   store,
   computed: {
-    ...mapState(['races', 'raceOptions']),
+    ...mapState(['raceOptions']),
   },
   methods: {
     showRaceSelector(race) {
       const hasInBooks = this.books.filter((book) => book === race.source);
       return hasInBooks.length > 0;
     },
-    changedRaceValue(race) {
-      console.log(race);
+    updateData(race, value) {
+      const { $store } = this;
+      $store.commit('updateRace', { race, value });
+      this.racesModel = { ...$store.state.races };
     },
   },
   watch: {
-    races() {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaa');
+    books(value) {
+      const { $store } = this;
+      $store.commit('updateBooks', this.books);
     },
   },
 };

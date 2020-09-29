@@ -52,6 +52,10 @@ function getShops() {
       name: 'Bookstore',
       generate: true,
     },
+    generalstore: {
+      name: 'General Store',
+      generate: true,
+    },
     tailor: {
       name: 'Tailor',
       generate: true,
@@ -66,7 +70,6 @@ function getShops() {
     },
     weaponsarmor: {
       name: 'Weapons/armor',
-      value: '',
       generate: true,
     },
     mason: {

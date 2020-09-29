@@ -1,24 +1,38 @@
 <template>
   <div class="fields-holder">
-    <div class="field" v-for="(shop, key) in shops" :key="key">
+    <div
+      class="field"
+      v-for="(shop, key) in shopsModel"
+      :key="key"
+      @input="selectShop(key, !shop.generate)"
+    >
       <b-checkbox v-model="shop.generate">{{ shop.name }}</b-checkbox>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { getShops } from '../../aux/getShops';
+import store from '../../store/index';
 
 export default {
   name: 'ShopSelector',
+  store,
   computed: {
-    shops: () => {
-      const shops = getShops();
+    shopsModel() {
+      const shops = this.$store.state.shops;
       const ordered = {};
       Object.keys(shops)
         .sort()
         .map((key) => (ordered[key] = shops[key]));
       return ordered;
+    },
+  },
+  methods: {
+    selectShop(shop, generate) {
+      const { $store } = this;
+      $store.commit('updateShops', { shop, generate });
     },
   },
 };
