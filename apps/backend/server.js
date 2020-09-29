@@ -8,7 +8,7 @@ db
   .on("open",()=>console.log("Connected to the database"));
 mongoose.connect("mongodb://localhost:27017");
 
-var app = express();
+const app = express();
 app.use(express.json());
 
 app.use("/",HashApi);
